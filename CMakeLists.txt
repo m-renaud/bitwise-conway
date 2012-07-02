@@ -9,3 +9,4 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 add_executable(bitconway bitconway.cxx)
+add_executable(bitconway-fast bitconway_fast.cxx)

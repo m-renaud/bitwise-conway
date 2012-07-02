@@ -29,14 +29,17 @@ class conway
   using full_grid_type = std::array<grid_type, 2>;
   
 
-  unsigned s;
+  std::size_t s;
 
   full_grid_type grid;
   std::array<unsigned,8> pop3;
 
   unsigned sum;
   ull mask;
-  ull bit[BITS];
+  grid_type bit;
+
+
+  // Random number engine and distribution
   std::mt19937_64 engine;
   std::uniform_int_distribution<ull> dist;
   std::function<ull()> generator;
@@ -52,7 +55,7 @@ public:
 private:
   void loop();
 
-  ull calc_next_gen(unsigned sum, unsigned on)
+  ull calc_next_gen(unsigned sum, ull on)
   {
     return (sum == 3) || (sum == 4 && on);
   }
@@ -69,7 +72,7 @@ conway::conway()
   for(std::size_t i = 0; i < BITS; ++i)
   {
     grid[s][i] = generator();
-    bit[i] = static_cast<ull>(0x01ULL << i);
+    bit[i] = 0x01ULL << i;
   }
 }
 
